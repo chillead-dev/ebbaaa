@@ -1,42 +1,39 @@
 import { redis } from "./_lib/redis.js";
-import { json } from "./_lib/util.js";
-import { getUserIdFromReq } from "./_lib/auth.js";
+import { json, readBody } from "./_lib/util.js";
+import { getUserId } from "./_lib/reqauth.js";
 import { K } from "./_lib/schema.js";
 
-export default async function handler(req, res) {
-  const userId = getUserIdFromReq(req);
-  if (!userId) return json(res, 401, { error: "unauthorized" });
+export default async function handler(req,res){
+  if (req.method !== "POST") return json(res, 405, { error:"method_not_allowed" });
+  const uid = getUserId(req);
+  if (!uid) return json(res, 401, { error:"unauthorized" });
 
-  const url = new URL(req.url, "http://localhost");
-  const q = String(url.searchParams.get("q") || "").trim().toLowerCase();
-  if (!q) return json(res, 200, []);
+  const body = await readBody(req);
+  const q = String(body.q || "").trim().toLowerCase();
+  if (!q) return json(res, 200, { users: [] });
 
-  // 1) попытка точного username
-  const exactId = await redis.get(K.userByUsername(q));
-  if (exactId) {
-    const raw = await redis.get(K.user(exactId));
-    if (!raw) return json(res, 200, []);
-    const u = JSON.parse(raw);
-    return json(res, 200, [{
-      id: u.id, username: u.username, display_name: u.display_name, avatar_url: u.avatar_url
-    }]);
-  }
+  // берём пачку usernames и фильтруем по префиксу (для MVP нормально)
+  const candidates = await redis.zrange("usernames", 0, 500);
+  const matched = candidates
+    .filter(u => String(u).startsWith(q))
+    .slice(0, 15);
 
-  // 2) prefix поиск через ZRANGEBYLEX по общему zset usernames
-  // Мы поддерживаем zset "usernames" с member=username, score=0
-  // (пополняется при signup)
-  const start = `[${q}`;
-  const end = `[${q}\xff`;
-  const list = await redis.zrangebylex("usernames", start, end, { limit: { offset: 0, count: 10 } });
-
-  const out = [];
-  for (const name of list || []) {
-    const id = await redis.get(K.userByUsername(name));
+  const users = [];
+  for (const uname of matched){
+    const id = await redis.get(K.userByUsername(uname));
     if (!id) continue;
     const raw = await redis.get(K.user(id));
-    if (!raw) continue;
-    const u = JSON.parse(raw);
-    out.push({ id: u.id, username: u.username, display_name: u.display_name, avatar_url: u.avatar_url });
+    let u = null;
+    try{ u = typeof raw === "string" ? JSON.parse(raw) : raw; }catch{ u = null; }
+    if (!u) continue;
+
+    users.push({
+      id: u.id,
+      username: u.username,
+      display_name: u.display_name || u.username,
+      avatar_url: u.avatar_url || "",
+    });
   }
-  return json(res, 200, out);
+
+  return json(res, 200, { users });
 }
