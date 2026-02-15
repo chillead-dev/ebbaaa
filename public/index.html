@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exuberant</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app" class="app">
+
+    <section id="screen-auth" class="screen">
+      <div class="card">
+        <div class="brand">
+          <div class="logo"></div>
+          <div>
+            <div class="brandName">Exuberant</div>
+            <div class="brandSub">Messages</div>
+          </div>
+        </div>
+
+        <div class="seg">
+          <button id="tab-login" class="segBtn isOn">Вход</button>
+          <button id="tab-signup" class="segBtn">Регистрация</button>
+        </div>
+
+        <div id="loginForm" class="form">
+          <input id="loginEmail" class="input" placeholder="Gmail" autocomplete="email" />
+          <input id="loginPass" class="input" placeholder="Пароль" type="password" autocomplete="current-password" />
+          <button id="btnLogin" class="btn">Войти</button>
+        </div>
+
+        <div id="signupForm" class="form hidden">
+          <input id="suEmail" class="input" placeholder="Gmail" autocomplete="email" />
+          <div class="row">
+            <button id="btnSendCode" class="btnLite">Код</button>
+            <input id="suCode" class="input code" placeholder="123456" inputmode="numeric" />
+          </div>
+          <input id="suUsername" class="input" placeholder="username (a-z 0-9 _)" />
+          <input id="suPass" class="input" placeholder="Пароль" type="password" autocomplete="new-password" />
+          <button id="btnSignup" class="btn">Создать</button>
+        </div>
+
+        <div id="authHint" class="hint"></div>
+      </div>
+    </section>
+
+    <section id="screen-main" class="screen hidden">
+      <header class="topbar">
+        <div id="topTitle" class="topTitle">Лента</div>
+        <input id="search" class="search" placeholder="Поиск по username" />
+      </header>
+
+      <main class="content">
+        <section id="view-feed" class="view"></section>
+        <section id="view-messages" class="view hidden"></section>
+        <section id="view-settings" class="view hidden"></section>
+      </main>
+
+      <nav class="tabbar">
+        <button data-tab="feed" class="tab isOn">Лента</button>
+        <button data-tab="messages" class="tab">Сообщения</button>
+        <button data-tab="settings" class="tab">Настройки</button>
+      </nav>
+    </section>
+
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
