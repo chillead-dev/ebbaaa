@@ -2,7 +2,7 @@
 <html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Exuberant</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
@@ -22,7 +22,7 @@
           <div class="logo"><span class="logoE">E</span></div>
           <div>
             <div class="brandName">Exuberant</div>
-            <div class="brandSub">Feed + Messages</div>
+            <div class="brandSub">Messages</div>
           </div>
         </div>
 
@@ -31,7 +31,6 @@
           <button id="tab-signup" class="segBtn" type="button">Регистрация</button>
         </div>
 
-        <!-- LOGIN -->
         <div id="loginForm" class="form">
           <input id="loginEmail" class="input" placeholder="Gmail" autocomplete="email" />
 
@@ -50,7 +49,6 @@
           <button id="btnLogin" class="btnGlass primary" type="button">Войти</button>
         </div>
 
-        <!-- SIGNUP STEP 1 -->
         <div id="signupStep1" class="form hidden">
           <input id="suEmail" class="input" placeholder="Gmail" autocomplete="email" />
 
@@ -67,12 +65,11 @@
           </div>
 
           <button id="btnSendCode" class="btnGlass" type="button">Отправить код</button>
-          <div class="meta">После этого откроется окно для ввода кода.</div>
+          <div class="meta">Дальше появится окно ввода кода.</div>
         </div>
 
-        <!-- SIGNUP STEP 2 -->
         <div id="signupStep2" class="form hidden">
-          <div class="meta">Мы отправили код на почту. Введите его:</div>
+          <div class="meta">Код отправлен. Введите его:</div>
           <input id="suCode" class="input" placeholder="123456" inputmode="numeric" />
           <button id="btnSignup" class="btnGlass primary" type="button">Подтвердить</button>
           <button id="btnBackToStep1" class="btnGlass" type="button">Назад</button>
@@ -88,31 +85,28 @@
 
         <div class="topbar">
           <div class="topLeft">
-            <div class="appTitle" id="topTitle">Telegram</div>
+            <div class="appTitle" id="topTitle">Чаты</div>
           </div>
 
           <div class="searchWrap">
-            <input id="search" class="search" placeholder="Поиск" />
+            <input id="search" class="search" placeholder="Поиск по username…" />
           </div>
 
-          <button id="btnMenu" class="iconBtn" type="button" aria-label="Меню">
+          <button id="btnRefresh" class="iconBtn" type="button" aria-label="Обновить">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 7h14M5 12h14M5 17h14"/>
+              <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
+              <path d="M21 3v6h-6"/>
             </svg>
           </button>
         </div>
 
-        <div id="chips" class="chips">
-          <button id="chipAll" class="chip isOn" type="button">Все чаты</button>
-          <button id="chipFolder" class="chip" type="button">Flyer <span id="chipBadge" class="badge" style="display:inline-flex;margin-left:8px;transform:translateY(2px)">1</span></button>
-        </div>
-
         <div class="content">
           <section id="view-chats" class="view"></section>
+          <section id="view-messages" class="view hidden"></section>
+
           <section id="view-feed" class="view hidden"></section>
           <section id="view-settings" class="view hidden"></section>
           <section id="view-profile" class="view hidden"></section>
-          <section id="view-messages" class="view hidden"></section>
         </div>
 
         <nav class="tabbar">
