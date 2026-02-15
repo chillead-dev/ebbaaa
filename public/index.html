@@ -14,11 +14,10 @@
   </div>
 
   <div id="app" class="app">
-
     <section id="screen-auth" class="screen">
       <div class="card">
         <div class="brand">
-          <div class="logo"></div>
+          <div class="logo"><span class="logoE">E</span></div>
           <div>
             <div class="brandName">Exuberant</div>
             <div class="brandSub">Messages</div>
@@ -30,29 +29,46 @@
           <button id="tab-signup" class="segBtn">Регистрация</button>
         </div>
 
+        <!-- LOGIN -->
         <div id="loginForm" class="form">
-          <input id="loginEmail" class="input" placeholder="Gmail" />
-          <input id="loginPass" class="input" placeholder="Пароль" type="password" />
-          <button id="btnLogin" class="btnGlass primary">Войти</button>
+          <input id="loginEmail" class="input" placeholder="Gmail" autocomplete="email" />
+
+          <div class="pwWrap">
+            <input id="loginPass" class="input" placeholder="Пароль" type="password" autocomplete="current-password" />
+            <button id="toggleLoginPass" class="pwToggle" type="button" aria-label="Показать пароль">
+              <span class="pwIcon">👁️</span>
+            </button>
+          </div>
+
+          <button id="btnLogin" class="btnGlass primary" type="button">Войти</button>
         </div>
 
+        <!-- SIGNUP STEP 1 -->
         <div id="signupStep1" class="form hidden">
-          <input id="suEmail" class="input" placeholder="Gmail" />
-          <input id="suPass" class="input" placeholder="Пароль" type="password" />
-          <button id="btnSendCode" class="btnGlass">Отправить код</button>
+          <input id="suEmail" class="input" placeholder="Gmail" autocomplete="email" />
+
+          <div class="pwWrap">
+            <input id="suPass" class="input" placeholder="Пароль" type="password" autocomplete="new-password" />
+            <button id="toggleSignupPass" class="pwToggle" type="button" aria-label="Показать пароль">
+              <span class="pwIcon">👁️</span>
+            </button>
+          </div>
+
+          <button id="btnSendCode" class="btnGlass" type="button">Отправить код</button>
+          <div class="meta">После этого откроется окно для ввода кода.</div>
         </div>
 
+        <!-- SIGNUP STEP 2 -->
         <div id="signupStep2" class="form hidden">
-          <div class="meta">Введите код из письма:</div>
-          <input id="suCode" class="input code" placeholder="123456" />
-          <button id="btnSignup" class="btnGlass primary">Подтвердить</button>
-          <button id="btnBackToStep1" class="btnGlass">Назад</button>
+          <div class="meta">Мы отправили код на почту. Введите его:</div>
+          <input id="suCode" class="input code" placeholder="123456" inputmode="numeric" />
+          <button id="btnSignup" class="btnGlass primary" type="button">Подтвердить</button>
+          <button id="btnBackToStep1" class="btnGlass" type="button">Назад</button>
         </div>
 
         <div id="authHint" class="hint"></div>
       </div>
     </section>
-
   </div>
 
   <script type="module" src="./app.js"></script>
