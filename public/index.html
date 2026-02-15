@@ -14,19 +14,21 @@
   </div>
 
   <div id="app" class="app">
+
+    <!-- AUTH -->
     <section id="screen-auth" class="screen">
       <div class="card">
         <div class="brand">
           <div class="logo"><span class="logoE">E</span></div>
           <div>
             <div class="brandName">Exuberant</div>
-            <div class="brandSub">Messages</div>
+            <div class="brandSub">Feed + Messages</div>
           </div>
         </div>
 
         <div class="seg">
-          <button id="tab-login" class="segBtn isOn">Вход</button>
-          <button id="tab-signup" class="segBtn">Регистрация</button>
+          <button id="tab-login" class="segBtn isOn" type="button">Вход</button>
+          <button id="tab-signup" class="segBtn" type="button">Регистрация</button>
         </div>
 
         <!-- LOGIN -->
@@ -36,7 +38,13 @@
           <div class="pwWrap">
             <input id="loginPass" class="input" placeholder="Пароль" type="password" autocomplete="current-password" />
             <button id="toggleLoginPass" class="pwToggle" type="button" aria-label="Показать пароль">
-              <span class="pwIcon">👁️</span>
+              <span class="pwIcon" aria-hidden="true">
+                <!-- eye svg -->
+                <svg viewBox="0 0 24 24">
+                  <path d="M2.2 12s3.6-7 9.8-7 9.8 7 9.8 7-3.6 7-9.8 7S2.2 12 2.2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </span>
             </button>
           </div>
 
@@ -50,7 +58,12 @@
           <div class="pwWrap">
             <input id="suPass" class="input" placeholder="Пароль" type="password" autocomplete="new-password" />
             <button id="toggleSignupPass" class="pwToggle" type="button" aria-label="Показать пароль">
-              <span class="pwIcon">👁️</span>
+              <span class="pwIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M2.2 12s3.6-7 9.8-7 9.8 7 9.8 7-3.6 7-9.8 7S2.2 12 2.2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </span>
             </button>
           </div>
 
@@ -69,6 +82,27 @@
         <div id="authHint" class="hint"></div>
       </div>
     </section>
+
+    <!-- MAIN APP -->
+    <section id="screen-main" class="screen screenMain hidden">
+      <header class="topbar">
+        <div id="topTitle" class="topTitle">Сообщения</div>
+        <input id="search" class="search" placeholder="Поиск по username" />
+      </header>
+
+      <main class="content">
+        <section id="view-feed" class="view hidden"></section>
+        <section id="view-messages" class="view"></section>
+        <section id="view-settings" class="view hidden"></section>
+      </main>
+
+      <nav class="tabbar">
+        <button data-tab="feed" class="tab" type="button">Лента</button>
+        <button data-tab="messages" class="tab isOn" type="button">Сообщения</button>
+        <button data-tab="settings" class="tab" type="button">Настройки</button>
+      </nav>
+    </section>
+
   </div>
 
   <script type="module" src="./app.js"></script>
