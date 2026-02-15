@@ -1,186 +1,86 @@
 :root{
-  --bg:#0b0b0f;
-  --glass:rgba(255,255,255,.06);
-  --stroke:rgba(255,255,255,.10);
-  --text:rgba(255,255,255,.92);
-  --muted:rgba(255,255,255,.62);
-  --accent1:#7C3AED;
-  --accent2:#06B6D4;
-  --ok:#22c55e;
-  --bad:#ef4444;
+  --blue:#1877F2;
+  --bg:#f0f2f5;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --border:#e5e7eb;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
+html[data-theme="dark"]{
+  --bg:#0f1115;
+  --card:#171a21;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --border:#2a2f3a;
+}
+
 body{
   margin:0;
-  background: radial-gradient(1200px 800px at 20% 10%, rgba(124,58,237,.18), transparent 50%),
-              radial-gradient(900px 600px at 80% 30%, rgba(6,182,212,.14), transparent 50%),
-              var(--bg);
+  background:var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
-.app{max-width:980px;margin:0 auto;height:100%}
-.screen{height:100%;display:flex;align-items:center;justify-content:center;padding:18px}
-.hidden{display:none!important}
-
-.card{
-  width:min(520px, 94vw);
-  background:var(--glass);
-  border:1px solid var(--stroke);
-  border-radius:26px;
-  padding:18px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.35);
-  backdrop-filter: blur(14px);
-}
-
-.brand{display:flex;gap:12px;align-items:center;margin-bottom:14px}
-.logo{
-  width:44px;height:44px;border-radius:16px;
-  background:linear-gradient(135deg,var(--accent1),var(--accent2));
-}
-.brandName{font-weight:800;letter-spacing:-.3px}
-.brandSub{color:var(--muted);font-size:12px;margin-top:2px}
-
-.seg{
-  display:flex;gap:8px;
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--stroke);
-  border-radius:16px;
-  padding:6px;
-  margin:10px 0 14px;
-}
-.segBtn{
-  flex:1;
-  border:none;
-  background:transparent;
-  color:var(--muted);
-  padding:10px 12px;
-  border-radius:12px;
-  font-weight:700;
-}
-.segBtn.isOn{
-  background:rgba(255,255,255,.08);
-  color:var(--text);
-}
-
-.form{display:flex;flex-direction:column;gap:10px}
-.row{display:flex;gap:10px;align-items:center}
-.input{
-  width:100%;
-  padding:12px 14px;
-  border-radius:16px;
-  border:1px solid var(--stroke);
-  background:rgba(0,0,0,.22);
-  color:var(--text);
-  outline:none;
-}
-.input.code{max-width:160px;text-align:center;letter-spacing:3px}
-.btn{
-  border:none;
-  border-radius:16px;
-  padding:12px 14px;
-  font-weight:800;
-  color:#fff;
-  background:linear-gradient(135deg,var(--accent1),var(--accent2));
-}
-.btnLite{
-  border:1px solid var(--stroke);
-  border-radius:16px;
-  padding:12px 14px;
-  font-weight:800;
-  background:rgba(255,255,255,.06);
-  color:var(--text);
-  min-width:96px;
-}
-.hint{margin-top:10px;color:var(--muted);font-size:12px;min-height:18px}
-
-#screen-main{align-items:stretch;justify-content:stretch;padding:0}
-.topbar{
-  height:64px;
+.topThemeBar{
+  height:52px;
   display:flex;
   align-items:center;
-  gap:12px;
-  padding:12px 14px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  background:rgba(10,10,14,.55);
-  backdrop-filter: blur(14px);
-  position:sticky;top:0;
+  justify-content:space-between;
+  padding:0 14px;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
 }
-.topTitle{font-size:18px;font-weight:900;letter-spacing:-.3px}
-.search{
-  margin-left:auto;
-  width:min(360px, 50vw);
-  padding:10px 12px;
-  border-radius:16px;
-  border:1px solid var(--stroke);
-  background:rgba(0,0,0,.22);
-  color:var(--text);
-  outline:none;
-}
-.content{height:calc(100% - 64px - 72px);overflow:auto;padding:14px}
-.view{min-height:100%}
 
-.tabbar{
-  height:72px;
-  display:flex;
-  gap:10px;
+.themeBtn{
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:10px;
+  padding:6px 10px;
+  font-weight:700;
+}
+
+.card{
+  width:420px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px;
+  margin:80px auto;
+}
+
+.brand{display:flex;gap:10px;margin-bottom:14px}
+.logo{
+  width:40px;height:40px;
+  background:var(--blue);
+  border-radius:12px;
+}
+
+.input{
+  width:100%;
   padding:10px;
-  border-top:1px solid rgba(255,255,255,.08);
-  background:rgba(10,10,14,.65);
-  backdrop-filter: blur(16px);
-  position:sticky;bottom:0;
-}
-.tab{
-  flex:1;
-  border:none;
-  border-radius:18px;
-  font-weight:800;
-  color:var(--muted);
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-}
-.tab.isOn{
+  border-radius:10px;
+  border:1px solid var(--border);
+  margin-bottom:10px;
+  background:var(--card);
   color:var(--text);
+}
+
+.btnGlass{
+  width:100%;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.2);
   background:rgba(255,255,255,.08);
-}
-
-.card2{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:22px;
-  padding:14px;
-  margin-bottom:12px;
-}
-
-.meta{color:var(--muted);font-size:12px}
-.hrow{display:flex;gap:10px;align-items:center}
-.avatar{
-  width:36px;height:36px;border-radius:14px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.10);
-  overflow:hidden;
-}
-.avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.badge{font-size:11px;color:rgba(255,255,255,.55)}
-
-.msgList{display:flex;flex-direction:column;gap:10px}
-.bubble{
-  max-width:min(680px, 92%);
-  padding:10px 12px;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.06);
-}
-.bubble.me{
-  margin-left:auto;
-  background:linear-gradient(135deg, rgba(124,58,237,.25), rgba(6,182,212,.18));
-}
-.chatBar{
-  display:flex;gap:10px;position:sticky;bottom:0;
-  padding:10px; background:rgba(10,10,14,.55);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
   backdrop-filter: blur(12px);
+  font-weight:900;
+  margin-bottom:8px;
 }
+
+.btnGlass.primary{
+  background:rgba(24,119,242,.2);
+  border-color:rgba(24,119,242,.4);
+}
+
+.hint{margin-top:10px;font-size:12px}
+.hidden{display:none}
