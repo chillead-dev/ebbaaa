@@ -20,21 +20,14 @@ const API = {
     return data;
   },
 
-  requestCode(email) {
-    return this._req("/api/auth_request_code", { email });
-  },
+  requestCode(email){ return this._req("/api/auth_request_code", { email }); },
+  signup(email,password,code,username){ return this._req("/api/auth_signup", { email,password,code,username }); },
+  login(email,password){ return this._req("/api/auth_login", { email,password }); },
+  me(token){ return this._req("/api/me", {}, token); },
 
-  signup(email, password, code, username) {
-    return this._req("/api/auth_signup", { email, password, code, username });
-  },
-
-  login(email, password) {
-    return this._req("/api/auth_login", { email, password });
-  },
-
-  me(token) {
-    return this._req("/api/me", {}, token);
-  }
+  chatsList(token){ return this._req("/api/chats_list", {}, token); },
+  messagesList(token, chat_id){ return this._req("/api/messages_list", { chat_id }, token); },
+  messagesSend(token, chat_id, text){ return this._req("/api/messages_send", { chat_id, text }, token); }
 };
 
 export default API;
