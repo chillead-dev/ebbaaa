@@ -2,8 +2,24 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function getFrom() {
+  const from = String(process.env.MAIL_FROM || "").trim();
+
+  // Валидируем формат: Name <email@domain>
+  // (упрощённая проверка, но ловит 99% косяков с кавычками и отсутствующим ">")
+  const ok = /^[^<>"]+\s<[^<>@\s]+@[^<>@\s]+\.[^<>@\s]+>$/.test(from);
+  if (!ok) {
+    throw new Error(
+      `MAIL_FROM is invalid. Set it like: Exuberant <auth@exuberant.pw>. Got: ${from}`
+    );
+  }
+  return from;
+}
+
 export async function sendVerifyCodeEmail({ to, code }) {
   const brand = process.env.APP_NAME || "Exuberant";
+  const from = getFrom();
+
   const html = `
   <div style="margin:0;padding:0;background:#0b0b0f;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial;">
     <div style="max-width:560px;margin:0 auto;padding:24px;">
@@ -13,7 +29,7 @@ export async function sendVerifyCodeEmail({ to, code }) {
             <div style="width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,#7C3AED,#06B6D4);"></div>
             <div>
               <div style="color:#fff;font-size:16px;font-weight:700;letter-spacing:-0.2px">${brand}</div>
-              <div style="color:rgba(255,255,255,0.65);font-size:12px">Подтверждение регистрации</div>
+              <div style="color:rgba(255,255,255,0.65);font-size:12px">Подтверждение входа</div>
             </div>
           </div>
         </div>
@@ -23,7 +39,7 @@ export async function sendVerifyCodeEmail({ to, code }) {
             Код подтверждения
           </h1>
           <p style="margin:10px 0 16px 0;color:rgba(255,255,255,0.75);font-size:14px;line-height:1.5;">
-            Введите этот код в ${brand}, чтобы завершить регистрацию. Он действителен 10 минут.
+            Введите этот код в ${brand}, чтобы завершить действие. Он действителен 10 минут.
           </p>
 
           <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.10);border-radius:18px;padding:18px;text-align:center;">
@@ -43,7 +59,7 @@ export async function sendVerifyCodeEmail({ to, code }) {
   </div>`;
 
   await resend.emails.send({
-    from: process.env.MAIL_FROM,
+    from,
     to,
     subject: `Ваш код для ${brand}: ${code}`,
     html
