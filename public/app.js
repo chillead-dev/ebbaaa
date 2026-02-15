@@ -1,3 +1,16 @@
+const themeBtn = document.getElementById("themeToggle");
+const savedTheme = localStorage.getItem("ex_theme") || "light";
+document.documentElement.setAttribute("data-theme", savedTheme);
+themeBtn.textContent = savedTheme === "dark" ? "Тема: Тёмная" : "Тема: Светлая";
+
+themeBtn.onclick = () => {
+  const cur = document.documentElement.getAttribute("data-theme") || "light";
+  const next = cur === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem("ex_theme", next);
+  themeBtn.textContent = next === "dark" ? "Тема: Тёмная" : "Тема: Светлая";
+};
+
 import API from "./api.js";
 
 const $ = (id) => document.getElementById(id);
