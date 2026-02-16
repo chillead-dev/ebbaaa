@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Exuberant</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <div class="topThemeBar">
+    <div class="topThemeTitle">Exuberant</div>
+    <button id="themeToggle" class="themeBtn" type="button">Тема: Тёмная</button>
+  </div>
+
+  <div id="app" class="app">
+
+    <!-- AUTH -->
+    <section id="screen-auth" class="screen">
+      <div class="card">
+        <div class="brand">
+          <div class="logo"><span class="logoE">E</span></div>
+          <div>
+            <div class="brandName">Exuberant</div>
+            <div class="brandSub">Feed + Messages</div>
+          </div>
+        </div>
+
+        <div class="seg">
+          <button id="tab-login" class="segBtn isOn" type="button">Вход</button>
+          <button id="tab-signup" class="segBtn" type="button">Регистрация</button>
+        </div>
+
+        <div id="loginForm" class="form">
+          <input id="loginEmail" class="input" placeholder="Gmail" autocomplete="email" />
+
+          <div class="pwWrap">
+            <input id="loginPass" class="input" placeholder="Пароль" type="password" autocomplete="current-password" />
+            <button id="toggleLoginPass" class="pwToggle" type="button" aria-label="Показать пароль">
+              <span class="pwIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M2.2 12s3.6-7 9.8-7 9.8 7 9.8 7-3.6 7-9.8 7S2.2 12 2.2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <button id="btnLogin" class="btnGlass primary" type="button">Войти</button>
+        </div>
+
+        <div id="signupStep1" class="form hidden">
+          <input id="suEmail" class="input" placeholder="Gmail" autocomplete="email" />
+
+          <div class="pwWrap">
+            <input id="suPass" class="input" placeholder="Пароль" type="password" autocomplete="new-password" />
+            <button id="toggleSignupPass" class="pwToggle" type="button" aria-label="Показать пароль">
+              <span class="pwIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M2.2 12s3.6-7 9.8-7 9.8 7 9.8 7-3.6 7-9.8 7S2.2 12 2.2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <button id="btnSendCode" class="btnGlass" type="button">Отправить код</button>
+          <div class="meta">Дальше появится окно ввода кода.</div>
+        </div>
+
+        <div id="signupStep2" class="form hidden">
+          <div class="meta">Код отправлен. Введите его:</div>
+          <input id="suCode" class="input" placeholder="123456" inputmode="numeric" />
+          <button id="btnSignup" class="btnGlass primary" type="button">Подтвердить</button>
+          <button id="btnBackToStep1" class="btnGlass" type="button">Назад</button>
+        </div>
+
+        <div id="authHint" class="hint"></div>
+      </div>
+    </section>
+
+    <!-- MAIN -->
+    <section id="screen-main" class="screen screenMain hidden">
+      <div class="mainShell">
+
+        <div class="topbar">
+          <div class="topLeft">
+            <div class="appTitle" id="topTitle">Чаты</div>
+          </div>
+
+          <div class="searchWrap">
+            <input id="search" class="search" placeholder="Поиск по username…" />
+          </div>
+
+          <button id="btnRefresh" class="iconBtn" type="button" aria-label="Обновить">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
+              <path d="M21 3v6h-6"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="content">
+          <section id="view-chats" class="view"></section>
+          <section id="view-messages" class="view hidden"></section>
+
+          <section id="view-feed" class="view hidden"></section>
+          <section id="view-settings" class="view hidden"></section>
+          <section id="view-profile" class="view hidden"></section>
+        </div>
+
+        <nav class="tabbar">
+          <button data-tab="chats" class="tab isOn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+            </svg>
+            <div class="lbl">Чаты</div>
+          </button>
+
+          <button data-tab="feed" class="tab" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19V5m0 14h16M8 15V9m4 6V7m4 8v-4"/>
+            </svg>
+            <div class="lbl">Лента</div>
+          </button>
+
+          <button data-tab="settings" class="tab" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+              <path d="M19.4 15a7.8 7.8 0 0 0 .1-2l2-1.2-2-3.4-2.3.6a7.7 7.7 0 0 0-1.7-1l-.3-2.4H10.8l-.3 2.4a7.7 7.7 0 0 0-1.7 1l-2.3-.6-2 3.4 2 1.2a7.8 7.8 0 0 0 .1 2l-2 1.2 2 3.4 2.3-.6a7.7 7.7 0 0 0 1.7 1l.3 2.4h4.4l.3-2.4a7.7 7.7 0 0 0 1.7-1l2.3.6 2-3.4-2-1.2Z"/>
+            </svg>
+            <div class="lbl">Настройки</div>
+          </button>
+
+          <button data-tab="profile" class="tab" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21a8 8 0 0 0-16 0"/>
+              <path d="M12 13a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z"/>
+            </svg>
+            <div class="lbl">Профиль</div>
+          </button>
+        </nav>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
