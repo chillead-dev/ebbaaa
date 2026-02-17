@@ -1,2 +1,0 @@
-export function isGmail(email){return String(email||"").trim().toLowerCase().endsWith("@gmail.com");}
-export function normalizeUsername(s){return String(s||"").trim().toLowerCase().replace(/[^a-z0-9_]/g,"");}
