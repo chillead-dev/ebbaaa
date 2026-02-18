@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Exuberant</title>
+  <meta name="theme-color" content="#0f1115" />
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbarShell">
+    <div class="topbar">
+      <div class="brandMini">
+        <img class="brandIcon" src="/assets/logo.svg" alt="Exuberant" />
+        <div class="brandText">
+          <div class="brandTitle">Exuberant</div>
+          <div class="brandSub">Feed + Messages</div>
+        </div>
+      </div>
+
+      <button id="themeToggle" class="pillBtn" type="button" aria-label="Переключить тему">
+        <span class="pillDot"></span>
+        <span id="themeToggleLabel">Тёмная</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="app" class="app">
+    <section id="screen-auth" class="screen">
+      <div class="authCard">
+        <div class="authHeader">
+          <div class="authLogo"><img src="/assets/logo.svg" alt="" /></div>
+          <div>
+            <div class="authTitle">Exuberant</div>
+            <div class="authHint">Вход / регистрация по Gmail</div>
+          </div>
+        </div>
+
+        <div class="seg">
+          <button id="tab-login" class="segBtn isOn" type="button">Вход</button>
+          <button id="tab-signup" class="segBtn" type="button">Регистрация</button>
+        </div>
+
+        <div id="loginForm" class="form">
+          <label class="field">
+            <div class="lbl">Почта</div>
+            <input id="loginEmail" class="input" placeholder="example@gmail.com" autocomplete="email" inputmode="email" />
+          </label>
+
+          <label class="field">
+            <div class="lbl">Пароль</div>
+            <div class="pwWrap">
+              <input id="loginPass" class="input" placeholder="••••••••" type="password" autocomplete="current-password" />
+              <button id="toggleLoginPass" class="iconSquare" type="button" aria-label="Показать пароль">
+                <img src="/assets/eye.svg" alt="" />
+              </button>
+            </div>
+          </label>
+
+          <button id="btnLogin" class="btn primary" type="button">Войти</button>
+        </div>
+
+        <div id="signupStep1" class="form hidden">
+          <label class="field">
+            <div class="lbl">Почта</div>
+            <input id="suEmail" class="input" placeholder="example@gmail.com" autocomplete="email" inputmode="email" />
+          </label>
+
+          <label class="field">
+            <div class="lbl">Пароль</div>
+            <div class="pwWrap">
+              <input id="suPass" class="input" placeholder="минимум 6 символов" type="password" autocomplete="new-password" />
+              <button id="toggleSignupPass" class="iconSquare" type="button" aria-label="Показать пароль">
+                <img src="/assets/eye.svg" alt="" />
+              </button>
+            </div>
+          </label>
+
+          <button id="btnSendCode" class="btn" type="button">Отправить код</button>
+          <div class="note">Дальше появится экран ввода кода из письма.</div>
+        </div>
+
+        <div id="signupStep2" class="form hidden">
+          <div class="note">Код отправлен на почту. Введите 6 цифр:</div>
+
+          <label class="field">
+            <div class="lbl">Код</div>
+            <input id="suCode" class="input code" placeholder="123456" inputmode="numeric" autocomplete="one-time-code" />
+          </label>
+
+          <button id="btnSignup" class="btn primary" type="button">Подтвердить</button>
+          <button id="btnBackToStep1" class="btn ghost" type="button">Назад</button>
+        </div>
+
+        <div id="authHint" class="status"></div>
+      </div>
+    </section>
+
+    <section id="screen-main" class="screenMain hidden">
+      <div class="shell">
+        <div class="topbar2">
+          <div class="topTitle" id="topTitle">Чаты</div>
+
+          <div class="searchWrap">
+            <input id="search" class="search" placeholder="Поиск по username…" />
+          </div>
+
+          <button id="btnRefresh" class="iconBtn" type="button" aria-label="Обновить">
+            <img src="/assets/refresh.svg" alt="" />
+          </button>
+        </div>
+
+        <div class="content">
+          <section id="view-chats" class="view"></section>
+          <section id="view-messages" class="view hidden"></section>
+          <section id="view-feed" class="view hidden"></section>
+          <section id="view-settings" class="view hidden"></section>
+          <section id="view-profile" class="view hidden"></section>
+        </div>
+
+        <nav class="tabbar">
+          <button class="tab isOn" data-tab="chats" type="button">
+            <img src="/assets/tab_chats.svg" alt="" />
+            <div class="lbl">Чаты</div>
+          </button>
+          <button class="tab" data-tab="feed" type="button">
+            <img src="/assets/tab_feed.svg" alt="" />
+            <div class="lbl">Лента</div>
+          </button>
+          <button class="tab" data-tab="settings" type="button">
+            <img src="/assets/tab_settings.svg" alt="" />
+            <div class="lbl">Настройки</div>
+          </button>
+          <button class="tab" data-tab="profile" type="button">
+            <img src="/assets/tab_profile.svg" alt="" />
+            <div class="lbl">Профиль</div>
+          </button>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <div id="toastHost" class="toastHost"></div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
