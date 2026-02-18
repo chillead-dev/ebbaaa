@@ -1,0 +1,1 @@
+export const safeParse=(x)=>{if(!x) return null; if(typeof x==="object") return x; try{return JSON.parse(x);}catch{return null;}};
