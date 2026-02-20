@@ -1,0 +1,2 @@
+export const json=(res,status,obj)=>{res.statusCode=status;res.setHeader("Content-Type","application/json; charset=utf-8");res.end(JSON.stringify(obj));};
+export const readBody=async(req)=>{const chunks=[];for await(const c of req) chunks.push(c);const raw=Buffer.concat(chunks).toString("utf8");if(!raw) return {};try{return JSON.parse(raw);}catch{return {};}};
